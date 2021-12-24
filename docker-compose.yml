@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  genie:
+    image: jaxzin/genie:0.0.1
+    build: .
+    container_name: genie
+    restart: unless-stopped
+    devices:
+      - /dev/gpiomem
