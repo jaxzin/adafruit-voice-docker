@@ -16,3 +16,6 @@ RUN pip3 install --upgrade adafruit-circuitpython-dotstar adafruit-circuitpython
 #RUN apt-get install -y git
 #RUN git clone https://github.com/HinTak/seeed-voicecard
 #RUN seeed-voicecard/install.sh
+
+COPY rainbow.py .
+ENTRYPOINT ["python", "rainbow.py"]
