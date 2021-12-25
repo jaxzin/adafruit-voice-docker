@@ -14,6 +14,8 @@ import board
 import digitalio
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
+import signal
+import time
 
 # Define the Reset Pin
 oled_reset = digitalio.DigitalInOut(board.D4)
@@ -27,6 +29,17 @@ BORDER = 5
 # Use for I2C.
 i2c = board.I2C()
 oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c, addr=0x3C, reset=oled_reset)
+
+# Setup exit handler
+kill_now = False
+def exit_handler(signum, frame):
+    kill_now = True
+    # Clear display.
+    oled.fill(0)
+    oled.show()
+
+signal.signal(signal.SIGINT, exit_handler)
+signal.signal(signal.SIGTERM, exit_handler)
 
 # Use for SPI
 # spi = board.SPI()
@@ -72,3 +85,6 @@ draw.text(
 oled.image(image)
 oled.show()
 
+# Loop to keep the process (and container) running
+while not kill_now:
+    time.sleep(0.1)
