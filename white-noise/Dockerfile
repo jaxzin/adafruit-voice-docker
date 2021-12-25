@@ -16,9 +16,13 @@ RUN pip3 install --upgrade adafruit-circuitpython-dotstar adafruit-circuitpython
 RUN apt-get install -y git
 RUN git clone https://github.com/HinTak/seeed-voicecard
 RUN apt-get update -y
-RUN apt-get -y install linux-raspi linux-headers-raspi linux-image-raspi
-RUN apt-get -y install dkms git i2c-tools libasound2-plugins
-#RUN seeed-voicecard/install.sh
+#RUN apt-get -y install linux-raspi linux-headers-raspi linux-image-raspi
+RUN apt-get -y install dkms i2c-tools libasound2-plugins
 
-#COPY rainbow.py .
-ENTRYPOINT ["speaker-test", "-c2"]
+#RUN seeed-voicecard/install.sh
+RUN pip3 install soothingsounds
+RUN apt-get install libportaudio2 libasound-dev
+
+COPY white-noise.py .
+COPY .asoundrc .
+ENTRYPOINT ["python", "white-noise.py"]

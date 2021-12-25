@@ -13,8 +13,7 @@ services:
     container_name: white-noise
     restart: unless-stopped
     devices:
-      - /dev/gpiomem
-      - /dev/i2c-1
+      - /dev/snd
   oled-hello:
     image: jaxzin/adafruit-oled-hello:0.0.1
     build: ./oled-hello
