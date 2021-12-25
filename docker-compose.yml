@@ -1,9 +1,24 @@
 version: '3.7'
 services:
-  genie:
-    image: jaxzin/genie:0.0.1
-    build: .
-    container_name: genie
+  rainbow:
+    image: jaxzin/adafruit-voice-rainbow:0.0.1
+    build: ./rainbow
+    container_name: rainbow
     restart: unless-stopped
     devices:
       - /dev/gpiomem
+  white-noise:
+    image: jaxzin/adafruit-voice-whitenoise:0.0.1
+    build: ./white-noise
+    container_name: white-noise
+    restart: unless-stopped
+    devices:
+      - /dev/gpiomem
+      - /dev/i2c-1
+  oled-hello:
+    image: jaxzin/adafruit-oled-hello:0.0.1
+    build: ./oled-hello
+    container_name: oled-hello
+    devices:
+      - /dev/gpiomem
+      - /dev/i2c-1
