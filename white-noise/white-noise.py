@@ -24,7 +24,7 @@ def main():
         "nmode",
         help="what type of white noise [white, pink, brown...]",
         nargs="?",
-        default="pink",
+        default="white",
     )
     P.add_argument(
         "hours",
