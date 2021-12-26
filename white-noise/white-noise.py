@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2021 scivision for soothingsounds
+# SPDX-License-Identifier: Apache-2.0
+# Changes: Added exit handler and support for looping sounds
+
 from time import sleep
 import soothingsounds as ss
 from argparse import ArgumentParser
